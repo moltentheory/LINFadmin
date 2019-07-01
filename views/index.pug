@@ -1,0 +1,327 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				form(action="/", method="get")
+					.card-header
+						.card-title Form Elements
+					.card-body
+						.row
+							.col-md-6.col-lg-4
+								.form-group
+									label(for='email2') Email Address
+									input#email2.form-control(type='email', placeholder='Enter Email')
+									small#emailHelp2.form-text.text-muted We'll never share your email with anyone else.
+								.form-group
+									label(for='password') Password
+									input#password.form-control(type='password', placeholder='Password')
+								.form-group.form-inline
+									label.col-md-3.col-form-label(for='inlineinput') Inline Input
+									.col-md-9.p-0
+										input#inlineinput.form-control.input-full(type='text', placeholder='Enter Input')
+								.form-group.has-success
+									label(for='successInput') Success Input
+									input#successInput.form-control(type='text', value='Success')
+								.form-group.has-error.has-feedback
+									label(for='errorInput') Error Input
+									input#errorInput.form-control(type='text', value='Error')
+									small#emailHelp.form-text.text-muted Please provide a valid informations.
+								.form-group
+									label(for='disableinput') Disable Input
+									input#disableinput.form-control(type='text', placeholder='Enter Input', disabled='')
+								.form-check
+									label Gender
+									br
+									label.form-radio-label
+										input.form-radio-input(type='radio', name='optionsRadios', value='', checked='')
+										span.form-radio-sign Male
+									label.form-radio-label.ml-3
+										input.form-radio-input(type='radio', name='optionsRadios', value='')
+										span.form-radio-sign Female
+								.form-group
+									label.control-label Static
+									p.form-control-static hello@example.com
+								.form-group
+									label(for='exampleFormControlSelect1') Example select
+									select#exampleFormControlSelect1.form-control
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+								.form-group
+									label(for='exampleFormControlSelect2') Example multiple select
+									select#exampleFormControlSelect2.form-control(multiple='')
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+								.form-group
+									label(for='exampleFormControlFile1') Example file input
+									input#exampleFormControlFile1.form-control-file(type='file')
+								.form-group
+									label(for='comment') Comment
+									textarea#comment.form-control(rows='5') 												
+								.form-check
+									label.form-check-label
+										input.form-check-input(type='checkbox', value='')
+										span.form-check-sign Agree with terms and conditions
+							.col-md-6.col-lg-4
+								.form-group
+									.input-group.mb-3
+										.input-group-prepend
+											span#basic-addon1.input-group-text @
+										input.form-control(type='text', placeholder='Username', aria-label='Username', aria-describedby='basic-addon1')
+								.form-group
+									.input-group.mb-3
+										input.form-control(type='text', placeholder="Recipient's username", aria-label="Recipient's username", aria-describedby='basic-addon2')
+										.input-group-append
+											span#basic-addon2.input-group-text @example.com
+								.form-group
+									label(for='basic-url') Your vanity URL
+									.input-group.mb-3
+										.input-group-prepend
+											span#basic-addon3.input-group-text https://example.com/users/
+										input#basic-url.form-control(type='text', aria-describedby='basic-addon3')
+								.form-group
+									.input-group.mb-3
+										.input-group-prepend
+											span.input-group-text $
+										input.form-control(type='text', aria-label='Amount (to the nearest dollar)')
+										.input-group-append
+											span.input-group-text .00
+								.form-group
+									.input-group
+										.input-group-prepend
+											span.input-group-text With textarea
+										textarea.form-control(aria-label='With textarea')
+								.form-group
+									.input-group
+										.input-group-prepend
+											button.btn.btn-default.btn-border(type='button') Button
+										input.form-control(type='text', placeholder='', aria-label='', aria-describedby='basic-addon1')
+								.form-group
+									.input-group
+										input.form-control(type='text', aria-label='Text input with dropdown button')
+										.input-group-append
+											button.btn.btn-primary.btn-border.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+											.dropdown-menu
+												a.dropdown-item(href='#') Action
+												a.dropdown-item(href='#') Another action
+												a.dropdown-item(href='#') Something else here
+												.dropdown-divider(role='separator')
+												a.dropdown-item(href='#') Separated link
+								.form-group
+									.input-icon
+										input.form-control(type='text', placeholder='Search for...')
+										span.input-icon-addon
+											i.fa.fa-search
+								.form-group
+									.input-icon
+										span.input-icon-addon
+											i.fa.fa-user
+										input.form-control(type='text', placeholder='Username')
+								.form-group
+									label.form-label Image Check
+									.row
+										.col-6.col-sm-4
+											label.imagecheck.mb-4
+												input.imagecheck-input(name='imagecheck', type='checkbox', value='1')
+												figure.imagecheck-figure
+													img.imagecheck-image(src='../../assets/img/examples/product1.jpg', alt='title')
+										.col-6.col-sm-4
+											label.imagecheck.mb-4
+												input.imagecheck-input(name='imagecheck', type='checkbox', value='2', checked='')
+												figure.imagecheck-figure
+													img.imagecheck-image(src='../../assets/img/examples/product4.jpg', alt='title')
+										.col-6.col-sm-4
+											label.imagecheck.mb-4
+												input.imagecheck-input(name='imagecheck', type='checkbox', value='3')
+												figure.imagecheck-figure
+													img.imagecheck-image(src='../../assets/img/examples/product3.jpg', alt='title')
+								.form-group
+									label.form-label Color Input
+									.row.gutters-xs
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='dark')
+												span.colorinput-color.bg-dark
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='primary')
+												span.colorinput-color.bg-primary
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='secondary')
+												span.colorinput-color.bg-secondary
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='info')
+												span.colorinput-color.bg-info
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='success')
+												span.colorinput-color.bg-success
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='danger')
+												span.colorinput-color.bg-danger
+										.col-auto
+											label.colorinput
+												input.colorinput-input(name='color', type='checkbox', value='warning')
+												span.colorinput-color.bg-warning
+								.form-group
+									label.form-label Size
+									.selectgroup.w-100
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='value', value='50', checked='')
+											span.selectgroup-button S
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='value', value='100')
+											span.selectgroup-button M
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='value', value='150')
+											span.selectgroup-button L
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='value', value='200')
+											span.selectgroup-button XL
+								.form-group
+									label.form-label Icons input
+									.selectgroup.w-100
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='transportation', value='2')
+											span.selectgroup-button.selectgroup-button-icon
+												i.icon-screen-smartphone
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='transportation', value='1', checked='')
+											span.selectgroup-button.selectgroup-button-icon
+												i.icon-screen-tablet
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='transportation', value='6')
+											span.selectgroup-button.selectgroup-button-icon
+												i.icon-screen-desktop
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='transportation', value='6')
+											span.selectgroup-button.selectgroup-button-icon
+												i.fa.fa-times
+								.form-group
+									label.form-label.d-block Icon input
+									.selectgroup.selectgroup-secondary.selectgroup-pills
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='icon-input', value='1', checked='')
+											span.selectgroup-button.selectgroup-button-icon
+												i.fa.fa-sun
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='icon-input', value='2')
+											span.selectgroup-button.selectgroup-button-icon
+												i.fa.fa-moon
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='icon-input', value='3')
+											span.selectgroup-button.selectgroup-button-icon
+												i.fa.fa-tint
+										label.selectgroup-item
+											input.selectgroup-input(type='radio', name='icon-input', value='4')
+											span.selectgroup-button.selectgroup-button-icon
+												i.fa.fa-cloud
+								.form-group
+									label.form-label Your skills
+									.selectgroup.selectgroup-pills
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='HTML', checked='')
+											span.selectgroup-button HTML
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='CSS')
+											span.selectgroup-button CSS
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='PHP')
+											span.selectgroup-button PHP
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='JavaScript')
+											span.selectgroup-button JavaScript
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='Ruby')
+											span.selectgroup-button Ruby
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='Ruby')
+											span.selectgroup-button Ruby
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='value', value='C++')
+											span.selectgroup-button C++
+							.col-md-6.col-lg-4
+								label.mb-3
+									b Form Group Default
+								.form-group.form-group-default
+									label Input
+									input#Name.form-control(type='text', placeholder='Fill Name')
+								.form-group.form-group-default
+									label Select
+									select#formGroupDefaultSelect.form-control
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+								label.mt-3.mb-3
+									b Form Floating Label
+								.form-group.form-floating-label
+									input#inputFloatingLabel.form-control.input-border-bottom(type='text', required='')
+									label.placeholder(for='inputFloatingLabel') Input
+								.form-group.form-floating-label
+									select#selectFloatingLabel.form-control.input-border-bottom(required='')
+										option(value='')  
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+									label.placeholder(for='selectFloatingLabel') Select
+								.form-group.form-floating-label
+									input#inputFloatingLabel2.form-control.input-solid(type='text', required='')
+									label.placeholder(for='inputFloatingLabel2') Input
+								.form-group.form-floating-label
+									select#selectFloatingLabel2.form-control.input-solid(required='')
+										option(value='')  
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+									label.placeholder(for='selectFloatingLabel2') Select
+								.form-group
+									label(for='largeInput') Large Input
+									input#largeInput.form-control.form-control-lg(type='text', placeholder='Large Input')
+								.form-group
+									label(for='largeInput') Default Input
+									input#defaultInput.form-control.form-control(type='text', placeholder='Default Input')
+								.form-group
+									label(for='smallInput') Small Input
+									input#smallInput.form-control.form-control-sm(type='text', placeholder='Small Input')
+								.form-group
+									label(for='largeSelect') Large Select
+									select#largeSelect.form-control.form-control-lg
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+								.form-group
+									label(for='defaultSelect') Default Select
+									select#defaultSelect.form-control.form-control
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+								.form-group
+									label(for='smallSelect') Small Select
+									select#smallSelect.form-control.form-control-sm
+										option 1
+										option 2
+										option 3
+										option 4
+										option 5
+					.card-action
+						button.btn.btn-success(type='submit') Submit
+						button.btn.btn-danger Cancel

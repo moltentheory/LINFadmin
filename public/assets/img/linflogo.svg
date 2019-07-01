@@ -1,0 +1,13 @@
+<svg width="576" height="512" xmlns="http://www.w3.org/2000/svg" class="svg-inline--fa fa-desktop fa-w-18">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m528,0l-480,0c-26.5,0 -48,21.5 -48,48l0,320c0,26.5 21.5,48 48,48l192,0l-16,48l-72,0c-13.3,0 -24,10.7 -24,24s10.7,24 24,24l272,0c13.3,0 24,-10.7 24,-24s-10.7,-24 -24,-24l-72,0l-16,-48l192,0c26.5,0 48,-21.5 48,-48l0,-320c0,-26.5 -21.5,-48 -48,-48zm-16,352l-448,0l0,-288l448,0l0,288z" fill="currentColor"/>
+  <rect stroke="null" id="svg_2" height="49" width="448.999998" y="307.8375" x="63.499996" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <text stroke="null" transform="matrix(7.689105601079974,0,0,7.317180470046784,-882.7884565582159,-947.5502509820286) " font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_4" y="164.437801" x="125.760009" fill-opacity="null" stroke-opacity="null" stroke-width="13" fill="#000000">LINF</text>
+ </g>
+</svg>

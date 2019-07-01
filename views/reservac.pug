@@ -1,0 +1,36 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				form(action="/reserva/create", method="post")
+					.card-header
+						.card-title Criação de Reserva
+						//reserva_id, id, dia, horario_id, sala_numero, descricao
+					.card-body
+						.row
+							.col-md-6.col-lg-4
+								.form-group
+									label(for='pessoa') Pessoa
+									select#pessoa.form-control(name='pessoa_cpf', required='true')
+										each val in pessoas
+											option(value=val.cpf) #{val.nome}
+								.form-group
+									label(for='horario') Horário
+									select#horario.form-control(name='horario', required='true')
+										each val in horarios
+											option(value=val.id) #{val.inicio} ~ #{val.fim}
+								.form-group
+									label(for='email') Email Address
+									input#email.form-control(name='email', required='true', type='email', placeholder='example@gmail.com')
+									small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+							.col-md-6.col-lg-4
+								.form-group
+									label(for='email') Periodo da reserva
+									#datepicker.input-daterange.input-group
+										input.input-sm.form-control(type='text', name='start')
+										span.input-group-addon to
+										input.input-sm.form-control(type='text', name='end')
+
+					.card-action
+						button.btn.btn-success(type='submit') Submit

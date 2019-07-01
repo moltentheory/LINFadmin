@@ -1,0 +1,41 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				.card-header
+					.card-title Usuário
+				.card-body
+					.row
+						.col-md-6.col-lg-4
+							.form-group
+								label(for='name') Nome Completo
+								p= pessoa.nome
+							.form-group
+								label(for='matricula') Matrícula
+								p= pessoa.matricula
+							.form-group
+								label(for='email') Email Address
+								p= pessoa.email
+							.form-group
+								label(for='password') Password
+								p= pessoa.senha
+						.col-md-6.col-lg-4
+							.form-group
+								label(for='cpf') CPF
+								p= pessoa.cpf
+							.form-group
+								label(for='cargo') Cargo
+								p= pessoa.cargo
+							.form-group
+								label(for='departamento') Departamento
+								p= pessoa.departamento
+							.form-group
+								label(for='profilePic') Foto de Perfil
+								.avatar-xl
+									img.avatar-img.rounded-circle(src=('data:'+pessoa.foto_type+';base64,'+pessoa.foto))
+				.card-action
+					.form-group
+						a.btn.btn-lg.btn-primary(href='/pessoa/update/'+pessoa.cpf) Update
+						a.btn.btn-lg.btn-danger(href='/pessoa/remove/'+pessoa.cpf) Remove
+					

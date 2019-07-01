@@ -1,0 +1,44 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				form(action="/pessoa/create", method="post", enctype='multipart/form-data')
+					.card-header
+						.card-title Cadastro de Usuário
+					.card-body
+						.row
+							.col-md-6.col-lg-4
+								.form-group
+									label(for='name') Nome Completo
+									input#name.form-control.form-control(name='nome', required='true', type='text', placeholder='Ex. Jose de Almeida')
+								.form-group
+									label(for='matricula') Matrícula
+									input#matricula.form-control.form-control(name='matricula', required='true', type='number', placeholder='000000000')
+								.form-group
+									label(for='email') Email Address
+									input#email.form-control(name='email', required='true', type='email', placeholder='example@gmail.com')
+									small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+								.form-group
+									label(for='password') Password
+									input#password.form-control(name='senha', required='true', type='password', placeholder='Password')
+							.col-md-6.col-lg-4
+								.form-group
+									label(for='cpf') CPF
+									input#name.form-control.form-control(name='cpf', required='true', type='number', placeholder='123.456.789-0')
+								.form-group
+									label(for='cargo') Cargo
+									select#cargo.form-control(name='cargo', required='true')
+										each val in cargos
+											option(value=val.id) #{val.titulo}
+								.form-group
+									label(for='departamento') Departamento
+									select#departamento.form-control(name='departamento', required='true')
+										each val in departamentos
+											option(value=val.id) #{val.nome}
+								.form-group
+									label(for='profilePic') Foto de Perfil
+									input#profilePic.form-control-file(name='foto', required='true', type='file', accept='image/*')
+									small#profilePic.form-text.text-muted Max. 500x500, 1MB files.
+					.card-action
+						button.btn.btn-success(type='submit') Submit

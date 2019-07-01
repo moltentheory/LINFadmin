@@ -1,0 +1,21 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				.card-header
+					.card-title Todos os Usuários
+				.card-body
+					table.table.table-hover
+						col(style='width:25%')
+						col(style='width:75%')
+						thead
+							tr
+								th(scope='col') CPF
+								th(scope='col') Nome
+						tbody
+							each val in pessoas
+								tr
+									td= val.cpf
+									td
+										a(href='/pessoa/read/'+val.cpf)= val.nome

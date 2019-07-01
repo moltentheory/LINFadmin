@@ -1,0 +1,355 @@
+doctype html
+html(lang='en')
+	head
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title= title
+		meta(content='width=device-width, initial-scale=1.0, shrink-to-fit=no', name='viewport')
+		link(rel='icon', href='/assets/img/icon.ico', type='image/x-icon')
+		// Fonts and icons
+		script(src='/assets/js/plugin/webfont/webfont.min.js')
+		script.
+			WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/assets/css/fonts.min.css']},
+			active: function() {
+			sessionStorage.fonts = true;
+			}
+			});
+		// CSS Files
+		link(rel='stylesheet', href='/assets/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/assets/css/bootstrap-datepicker.css')
+		link(rel='stylesheet', href='/assets/css/atlantis.min.css')
+		// CSS Just for demo purpose, don't include it in your project
+		// link(rel='stylesheet', href='/assets/css/demo.css')
+	body(data-background-color="dark")
+		.wrapper
+			.main-header
+				// Logo Header
+				.logo-header(data-background-color='dark')
+					a.logo(href='/')
+						img.navbar-brand(src='/assets/img/logo.svg', alt='navbar brand')
+					button.navbar-toggler.sidenav-toggler.ml-auto(type='button', data-toggle='collapse', data-target='collapse', aria-expanded='false', aria-label='Toggle navigation')
+						span.navbar-toggler-icon
+							i.icon-menu
+					button.topbar-toggler.more
+						i.icon-options-vertical
+					.nav-toggle
+						button.btn.btn-toggle.toggle-sidebar
+							i.icon-menu
+				// End Logo Header
+				// Navbar Header
+				nav.navbar.navbar-header.navbar-expand-lg(data-background-color='dark')
+					.container-fluid
+						#search-nav.collapse
+							form.navbar-left.navbar-form.nav-search.mr-md-3
+								.input-group
+									.input-group-prepend
+										button.btn.btn-search.pr-1(type='submit')
+											i.fa.fa-search.search-icon
+									input.form-control(type='text', placeholder='Search ...')
+						ul.navbar-nav.topbar-nav.ml-md-auto.align-items-center
+							li.nav-item.toggle-nav-search.hidden-caret
+								a.nav-link(data-toggle='collapse', href='#search-nav', role='button', aria-expanded='false', aria-controls='search-nav')
+									i.fa.fa-search
+							li.nav-item.dropdown.hidden-caret
+								a#messageDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									i.fa.fa-envelope
+								ul.dropdown-menu.messages-notif-box.animated.fadeIn(aria-labelledby='messageDropdown')
+									li
+										.dropdown-title.d-flex.justify-content-between.align-items-center
+											| Messages
+											a.small(href='#') Mark all as read
+									li
+										.message-notif-scroll.scrollbar-outer
+											.notif-center
+												a(href='#')
+													.notif-img
+														img(src='/assets/img/jm_denis.jpg', alt='Img Profile')
+													.notif-content
+														span.subject Jimmy Denis
+														span.block
+															| How are you ?
+														span.time 5 minutes ago
+												a(href='#')
+													.notif-img
+														img(src='/assets/img/chadengle.jpg', alt='Img Profile')
+													.notif-content
+														span.subject Chad
+														span.block
+															| Ok, Thanks !
+														span.time 12 minutes ago
+												a(href='#')
+													.notif-img
+														img(src='/assets/img/mlane.jpg', alt='Img Profile')
+													.notif-content
+														span.subject Jhon Doe
+														span.block
+															| Ready for the meeting today...
+														span.time 12 minutes ago
+												a(href='#')
+													.notif-img
+														img(src='/assets/img/talha.jpg', alt='Img Profile')
+													.notif-content
+														span.subject Talha
+														span.block
+															| Hi, Apa Kabar ?
+														span.time 17 minutes ago
+									li
+										a.see-all(href='javascript:void(0);')
+											| See all messages
+											i.fa.fa-angle-right
+							li.nav-item.dropdown.hidden-caret
+								a#notifDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+									i.fa.fa-bell
+									span.notification 4
+								ul.dropdown-menu.notif-box.animated.fadeIn(aria-labelledby='notifDropdown')
+									li
+										.dropdown-title You have 4 new notification
+									li
+										.notif-scroll.scrollbar-outer
+											.notif-center
+												a(href='#')
+													.notif-icon.notif-primary
+														i.fa.fa-user-plus
+													.notif-content
+														span.block
+															| New user registered
+														span.time 5 minutes ago
+												a(href='#')
+													.notif-icon.notif-success
+														i.fa.fa-comment
+													.notif-content
+														span.block
+															| Rahmad commented on Admin
+														span.time 12 minutes ago
+												a(href='#')
+													.notif-img
+														img(src='/assets/img/profile2.jpg', alt='Img Profile')
+													.notif-content
+														span.block
+															| Reza send messages to you
+														span.time 12 minutes ago
+												a(href='#')
+													.notif-icon.notif-danger
+														i.fa.fa-heart
+													.notif-content
+														span.block
+															| Farrah liked Admin
+														span.time 17 minutes ago
+									li
+										a.see-all(href='javascript:void(0);')
+											| See all notifications
+											i.fa.fa-angle-right
+							li.nav-item.dropdown.hidden-caret
+								a.nav-link(data-toggle='dropdown', href='#', aria-expanded='false')
+									i.fas.fa-layer-group
+								.dropdown-menu.quick-actions.quick-actions-info.animated.fadeIn
+									.quick-actions-header
+										span.title.mb-1 Quick Actions
+										span.subtitle.op-8 Shortcuts
+									.quick-actions-scroll.scrollbar-outer
+										.quick-actions-items
+											.row.m-0
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-file-1
+														span.text Generated Report
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-database
+														span.text Create New Database
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-pen
+														span.text Create New Post
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-interface-1
+														span.text Create New Task
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-list
+														span.text Completed Tasks
+												a.col-6.col-md-4.p-0(href='#')
+													.quick-actions-item
+														i.flaticon-file
+														span.text Create New Invoice
+							li.nav-item.dropdown.hidden-caret
+								a.dropdown-toggle.profile-pic(data-toggle='dropdown', href='#', aria-expanded='false')
+									.avatar-sm
+										img.avatar-img.rounded-circle(src='/assets/img/profile.jpg', alt='...')
+								ul.dropdown-menu.dropdown-user.animated.fadeIn
+									.dropdown-user-scroll.scrollbar-outer
+										li
+											.user-box
+												.avatar-lg
+													img.avatar-img.rounded(src='/assets/img/profile.jpg', alt='image profile')
+												.u-text
+													h4 Genaina Nunes Rodrigues
+													p.text-muted genaina@unb.br
+													a.btn.btn-xs.btn-secondary.btn-sm(href='profile.html') View Profile
+										li
+											.dropdown-divider
+											a.dropdown-item(href='#') My Profile
+											a.dropdown-item(href='#') My Balance
+											a.dropdown-item(href='#') Inbox
+											.dropdown-divider
+											a.dropdown-item(href='#') Account Setting
+											.dropdown-divider
+											a.dropdown-item(href='#') Logout
+				// End Navbar
+			// Sidebar
+			.sidebar.sidebar-style-2(data-background-color='dark2')
+				.sidebar-wrapper.scrollbar.scrollbar-inner
+					.sidebar-content
+						.user
+							.avatar-sm.float-left.mr-2
+								img.avatar-img.rounded-circle(src='/assets/img/profile.jpg', alt='...')
+							.info
+								a(data-toggle='collapse', href='#collapseExample', aria-expanded='true')
+									span
+										| Genaina
+										span.user-level Professora
+										span.caret
+								.clearfix
+								#collapseExample.collapse.in
+									ul.nav
+										li
+											a(href='#profile')
+												span.link-collapse My Profile
+										li
+											a(href='#edit')
+												span.link-collapse Edit Profile
+										li
+											a(href='#settings')
+												span.link-collapse Settings
+						ul.nav.nav-primary
+							li.nav-item
+								a(href='/programacao')
+									i.fas.fa-clipboard-list
+									p Programação do Dia
+							li.nav-section
+								span.sidebar-mini-icon
+									i.fa.fa-ellipsis-h
+								h4.text-section CRUDs
+							li.nav-item
+								a(data-toggle='collapse', href='#pessoa')
+									i.fas.fa-user
+									p Pessoa
+									span.caret
+								#pessoa.collapse
+									ul.nav.nav-collapse
+										li
+											a(href='/pessoa/create')
+												span.sub-item Create
+										li
+											a(href='/pessoa/read')
+												span.sub-item Read
+										li
+											a(href='/pessoa/update')
+												span.sub-item Update
+										li
+											a(href='/pessoa/delete')
+												span.sub-item Delete
+							li.nav-item
+								a(data-toggle='collapse', href='#reserva')
+									i.fas.fa-calendar-alt
+									p Reserva
+									span.caret
+								#reserva.collapse
+									ul.nav.nav-collapse
+										li
+											a(href='/reserva/create')
+												span.sub-item Create
+										li
+											a(href='/reserva/read')
+												span.sub-item Read
+										li
+											a(href='/reserva/update')
+												span.sub-item Update
+										li
+											a(href='/reserva/delete')
+												span.sub-item Delete
+							li.nav-item
+								a(data-toggle='collapse', href='#historico')
+									i.fas.fa-clock
+									p Historico
+									span.caret
+								#historico.collapse
+									ul.nav.nav-collapse
+										li
+											a(href='/historico/create')
+												span.sub-item Create
+										li
+											a(href='/historico/read')
+												span.sub-item Read
+										li
+											a(href='/historico/update')
+												span.sub-item Update
+										li
+											a(href='/historico/delete')
+												span.sub-item Delete
+							li.nav-section
+								span.sidebar-mini-icon
+									i.fa.fa-ellipsis-h
+								h4.text-section Outros
+							li.nav-item
+								a(href='/buscas')
+									i.fas.fa-search
+									p Buscas
+									span.badge.badge-success 5
+			// End Sidebar
+			.main-panel
+				.content(data-background-color='dark')
+					.page-inner
+						.page-header
+							h4.page-title #{ ((route[0])?(route[0]):("Index")) }
+							ul.breadcrumbs
+								li.nav-home
+									a(href='/')
+										i.flaticon-home
+								each val, index in route
+									li.separator
+										i.flaticon-right-arrow
+									li.nav-item
+										a( href=("/"+route.slice(0, index+1).join('/').toLowerCase())) #{val}
+						block content
+				footer.footer
+					.container-fluid
+						nav.pull-left
+							ul.nav
+								li.nav-item
+									a.nav-link(href='#')
+										| @MoltenTheory
+						.copyright.ml-auto
+							| 2019, made with Node+Express+Pug
+							//a(href='https://www.themekita.com') ThemeKita
+		// Core JS Files
+		script(src='/assets/js/core/jquery.3.2.1.min.js')
+		script(src='/assets/js/core/popper.min.js')
+		script(src='/assets/js/core/bootstrap.min.js')
+		// jQuery UI
+		script(src='/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')
+		script(src='/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')
+		// jQuery Scrollbar
+		script(src='/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')
+		// Chart JS
+		script(src='/assets/js/plugin/chart.js/chart.min.js')
+		// jQuery Sparkline
+		script(src='/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')
+		// Chart Circle
+		script(src='/assets/js/plugin/chart-circle/circles.min.js')
+		// Datatables
+		script(src='/assets/js/plugin/datatables/datatables.min.js')
+		// Bootstrap Notify
+		script(src='/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')
+		// jQuery Vector Maps
+		script(src='/assets/js/plugin/jqvmap/jquery.vmap.min.js')
+		script(src='/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js')
+		// Sweet Alert
+		script(src='/assets/js/plugin/sweetalert/sweetalert.min.js')
+		// Atlantis JS
+		script(src='/assets/js/atlantis.min.js')
+		// Bootstrap DatePicker
+		script(src='/assets/js/plugin/bootstrap-datepicker/bootstrap-datepicker.js')
+		script(src='/assets/js/plugin/bootstrap-datepicker/dates.js')
