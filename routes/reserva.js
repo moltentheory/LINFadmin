@@ -18,6 +18,7 @@ router.get('/read', function(req, res, next) {
 router.get('/create', function(req, res, next) {
   var horarios = [];
   var salas = [];
+  var disciplinas = [];
   var pessoas = [];
 
   var db = req.app.get('db');
@@ -29,11 +30,16 @@ router.get('/create', function(req, res, next) {
       if (error) throw error;
       results.forEach(function(item) { salas.push({numero: item.numero}) });
 
-      db.query('SELECT cpf, nome FROM pessoa', function (error, results, fields) {
+      db.query('SELECT codigo, nome FROM disciplina', function (error, results, fields) {
         if (error) throw error;
-        results.forEach(function(item) { pessoas.push({cpf: item.cpf, nome: item.nome}) });
-  
-        res.render('reservac', { title: 'criando usuario', horarios: horarios, salas: salas, pessoas: pessoas });
+        results.forEach(function(item) { disciplinas.push({codigo: item.codigo, nome: item.nome}) });
+        console.log(disciplinas)
+
+        db.query('SELECT cpf, nome FROM pessoa', function (error, results, fields) {
+          if (error) throw error;
+          results.forEach(function(item) { pessoas.push({cpf: item.cpf, nome: item.nome}) });
+          res.render('reservac', { title: 'criando usuario', horarios: horarios, salas: salas, pessoas: pessoas, disciplinas: disciplinas });
+        });
       });
     });
   });

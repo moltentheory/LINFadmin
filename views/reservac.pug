@@ -9,7 +9,7 @@ block content
 						//reserva_id, id, dia, horario_id, sala_numero, descricao
 					.card-body
 						.row
-							.col-md-6.col-lg-4
+							.col-md-4.col-lg-4
 								.form-group
 									label(for='pessoa') Pessoa
 									select#pessoa.form-control(name='pessoa_cpf', required='true')
@@ -20,17 +20,57 @@ block content
 									select#horario.form-control(name='horario', required='true')
 										each val in horarios
 											option(value=val.id) #{val.inicio} ~ #{val.fim}
+										//small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
 								.form-group
-									label(for='email') Email Address
-									input#email.form-control(name='email', required='true', type='email', placeholder='example@gmail.com')
-									small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
-							.col-md-6.col-lg-4
+									label(for='disciplina') Disciplina
+									select#disciplina.form-control(name='disciplina', required='false')
+										each val in disciplinas
+											option(value=val.codigo) #{val.nome}
 								.form-group
-									label(for='email') Periodo da reserva
-									#datepicker.input-daterange.input-group
-										input.input-sm.form-control(type='text', name='start')
-										span.input-group-addon to
-										input.input-sm.form-control(type='text', name='end')
-
+									label(for='descricao') Descrição
+									.input-group
+										//.input-group-prepend
+										//	span.input-group-text Descrição
+										textarea.form-control(aria-label='Descrição', name='descricao')
+							.col-md-6.col-lg-6
+								.form-group
+									label(for='periodo') Periodo da reserva
+									#datepicker.input-daterange.input-group.col-md-12.col-lg-12
+										input.input-sm.form-control(type='text', name='start', autocomplete='off')
+										span.input-group-addon &nbsp;&nbsp;&nbsp;até&nbsp;&nbsp;&nbsp;
+										input.input-sm.form-control(type='text', name='end', autocomplete='off')
+										small#periodoHelp.form-text.text-muted Escolha um período para a sua reserva (para reservar apenas um dia repita a data nos dois campos).
+								.form-group
+									label.form-label Dias da semana
+									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='seg', value=1)
+											span.selectgroup-button Seg
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='ter', value=1)
+											span.selectgroup-button Ter
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='qua', value=1)
+											span.selectgroup-button Qua
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='qui', value=1)
+											span.selectgroup-button Qui
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='sex', value=1)
+											span.selectgroup-button Sex
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='sab', value=1)
+											span.selectgroup-button Sab
+										label.selectgroup-item
+											input.selectgroup-input(type='checkbox', name='dom', value=1)
+											span.selectgroup-button Dom
+										small#diaHelp.form-text.text-muted Deixe em branco para reservas de apenas um dia.
+								.form-group
+									label.form-label Salas de aula
+									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
+										each val in salas
+											label.selectgroup-item
+												input.selectgroup-input(type='checkbox', name=val.numero, value=1)
+												span.selectgroup-button Sala #{val.numero}
 					.card-action
 						button.btn.btn-success(type='submit') Submit
