@@ -36,33 +36,33 @@ block content
 								.form-group
 									label(for='periodo') Periodo da reserva
 									#datepicker.input-daterange.input-group.col-md-12.col-lg-12
-										input.input-sm.form-control(type='text', name='start', autocomplete='off')
+										input.input-sm.form-control(type='text', name='start', autocomplete='off', required='true')
 										span.input-group-addon &nbsp;&nbsp;&nbsp;até&nbsp;&nbsp;&nbsp;
-										input.input-sm.form-control(type='text', name='end', autocomplete='off')
+										input.input-sm.form-control(type='text', name='end', autocomplete='off', required='true')
 										small#periodoHelp.form-text.text-muted Escolha um período para a sua reserva (para reservar apenas um dia repita a data nos dois campos).
 								.form-group
 									label.form-label Dias da semana
 									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='seg', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=1)
 											span.selectgroup-button Seg
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='ter', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=2)
 											span.selectgroup-button Ter
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='qua', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=3)
 											span.selectgroup-button Qua
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='qui', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=4)
 											span.selectgroup-button Qui
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='sex', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=5)
 											span.selectgroup-button Sex
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='sab', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=6)
 											span.selectgroup-button Sab
 										label.selectgroup-item
-											input.selectgroup-input(type='checkbox', name='dom', value=1)
+											input.selectgroup-input(type='checkbox', name='dia[]', value=7)
 											span.selectgroup-button Dom
 										small#diaHelp.form-text.text-muted Deixe em branco para reservas de apenas um dia.
 								.form-group
@@ -70,7 +70,7 @@ block content
 									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
 										each val in salas
 											label.selectgroup-item
-												input.selectgroup-input(type='checkbox', name=val.numero, value=1)
+												input.selectgroup-input(type='checkbox', name='sala[]', value=val.numero)
 												span.selectgroup-button Sala #{val.numero}
 					.card-action
 						button.btn.btn-success(type='submit') Submit
