@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS reserva
 	(id int primary key auto_increment not null,
     pessoa_cpf int not null references pessoa (cpf),
     estado boolean,
+    descricao varchar(144),
     disciplina_codigo int references disciplina (codigo));
 
 CREATE TABLE IF NOT EXISTS evento
@@ -40,8 +41,7 @@ CREATE TABLE IF NOT EXISTS evento
     id int auto_increment not null primary key,
     dia date not null,
     horario_id int not null references horario (id),
-    sala_numero int not null references sala (numero),
-    descricao varchar(144));
+    sala_numero int not null references sala (numero));
 
 CREATE TABLE IF NOT EXISTS curso
 	(codigo int primary key auto_increment not null,
