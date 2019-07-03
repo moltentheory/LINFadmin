@@ -80,7 +80,11 @@ router.get('/create', function(req, res, next) {
 router.post('/create', function(req, res, next) {
   console.log(req.body);
 
-  var weekdays = req.body.dia.map(function(elem){ return parseInt(elem); });
+  if(req.body.start != req.body.end)
+    var weekdays = req.body.dia.map(function(elem){ return parseInt(elem); });
+  else
+    var weekdays = [].push( moment(req.body.start).isoWeekday() );
+  
   var salas = req.body.sala.map(function(elem){ return parseInt(elem); });
 
   var dias = [];

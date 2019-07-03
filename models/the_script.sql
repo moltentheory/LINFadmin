@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS pessoa
 
 CREATE TABLE IF NOT EXISTS reserva
 	(id int primary key auto_increment not null,
-    pessoa_cpf int not null references pessoa (cpf),
+    pessoa_cpf bigint(11) not null references pessoa (cpf),
     estado boolean,
     descricao varchar(144),
     disciplina_codigo int references disciplina (codigo));
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS historico
 	(id int primary key auto_increment not null,
     hora_entrada timestamp not null,
     hora_saida timestamp,
-    pessoa_cpf int references pessoa (cpf));
+    pessoa_cpf bigint(11) references pessoa (cpf));
     
 CREATE TABLE IF NOT EXISTS disciplina_curso
 	(disciplina_codigo int references disciplina (codigo),
