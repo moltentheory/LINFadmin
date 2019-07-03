@@ -4,18 +4,32 @@ block content
 		.col-md-12
 			.card
 				.card-header
-					.card-title Todos os Usuários
+					.card-title Todos as Reservas
 				.card-body
 					table.table.table-hover
-						col(style='width:25%')
-						col(style='width:75%')
+						//col(style='width:25%')
+						//col(style='width:75%')
+						// rid, pessoa_cpf, nome, estado, eid, dia, horario_id, inicio, sala_numero, descricao
 						thead
 							tr
-								th(scope='col') CPF
+								th(scope='col') ID
 								th(scope='col') Nome
+								th(scope='col') Disciplina
+								th(scope='col') Aprovação
+								th(scope='col') Dia
+								th(scope='col') Horário
+								th(scope='col') Sala
+								th(scope='col') Descrição
+								
 						tbody
-							each val in pessoas
+							each val in reservas
 								tr
-									td= val.cpf
 									td
-										a(href='/pessoa/read/'+val.cpf)= val.nome
+										a(href='/reserva/read/'+val.rid) #{val.rid}-#{val.eid}
+									td= val.nome
+									td= val.disciplina
+									td= val.estado
+									td= val.dia
+									td= val.inicio
+									td= val.sala_numero
+									td= val.descricao

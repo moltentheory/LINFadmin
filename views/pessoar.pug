@@ -35,7 +35,6 @@ block content
 								.avatar-xl
 									img.avatar-img.rounded-circle(src=('data:'+pessoa.foto_type+';base64,'+pessoa.foto))
 				.card-action
-					.form-group
-						a.btn.btn-lg.btn-primary(href='/pessoa/update/'+pessoa.cpf) Update
-						a.btn.btn-lg.btn-danger(href='/pessoa/remove/'+pessoa.cpf) Remove
+					a.btn.btn-lg.btn-primary(href='/pessoa/update/'+pessoa.cpf) Update
+					a.btn.btn-lg.btn-danger(href='/pessoa/remove/'+pessoa.cpf) Remove
 					

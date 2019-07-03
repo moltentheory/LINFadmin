@@ -3,50 +3,106 @@ block content
 	.row
 		.col-md-12
 			.card
-				form(action="/pessoa/update", method="post", enctype='multipart/form-data')
+				form(action="/reserva/update", method="post")
 					.card-header
-						.card-title Alteração de Usuário
+						.card-title Alteração de Reserva
+						//reserva_id, id, dia, horario_id, sala_numero, descricao
+						// formdata: cpf, horario, disciplina, descricao, periodo, dias, salas
 					.card-body
 						.row
-							.col-md-6.col-lg-4
+							.col-md-4.col-lg-4
 								.form-group
-									label(for='name') Nome Completo
-									input#name.form-control.form-control(name='nome', required='true', type='text', value=pessoa.nome)
-								.form-group
-									label(for='matricula') Matrícula
-									input#matricula.form-control.form-control(name='matricula', required='true', type='number', value=pessoa.matricula)
-								.form-group
-									label(for='email') Email Address
-									input#email.form-control(name='email', required='true', type='email', value=pessoa.email)
-									small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
-								.form-group
-									label(for='password') Password
-									input#password.form-control(name='senha', required='true', type='password', value=pessoa.senha)
-							.col-md-6.col-lg-4
-								.form-group
-									label(for='cpf') CPF
-									input#name.form-control.form-control(name='cpf', required='true', type='number', value=pessoa.cpf readonly='')
-								.form-group
-									label(for='cargo') Cargo
-									select#cargo.form-control(name='cargo', required='true')
-										each val in cargos
-											if val.id == pessoa.cargo_id
-												option(value=val.id, selected='') #{val.titulo}
+									label(for='pessoa') Pessoa
+									select#pessoa.form-control(name='pessoa_cpf', required='true')
+										each val in pessoas
+											if val.cpf == formdata.cpf
+												option(value=val.cpf, selected='') #{val.nome}*
 											else
-												option(value=val.id) #{val.titulo}
+												option(value=val.cpf) #{val.nome}
 								.form-group
-									label(for='departamento') Departamento
-									select#departamento.form-control(name='departamento', required='true')
-										each val in departamentos
-											if val.id == pessoa.departamento_id
-												option(value=val.id, selected='') #{val.nome}
+									label(for='horario') Horário
+									select#horario.form-control(name='horario', required='true')
+										each val in horarios
+											if val.id == formdata.horario
+												option(value=val.id, selected='') #{val.inicio} ~ #{val.fim}*
 											else
-												option(value=val.id) #{val.nome}
+												option(value=val.id) #{val.inicio} ~ #{val.fim}
 								.form-group
-									label(for='profilePic') Foto de Perfil
-									input#profilePic.form-control-file(name='foto', type='file', accept='image/*')
-									small#profilePic.form-text.text-muted Max. 500x500, 1MB files.
-									.avatar-sm 
-										img.avatar-img.rounded-circle(src=('data:'+pessoa.foto_type+';base64,'+pessoa.foto))
+									label(for='disciplina') Disciplina
+									select#disciplina.form-control(name='disciplina', required='false')
+										each val in disciplinas
+											if val.codigo == formdata.disciplina
+												option(value=val.codigo, selected='') #{val.nome}*
+											else
+												option(value=val.codigo) #{val.nome}
+								.form-group
+									label(for='descricao') Descrição
+									.input-group
+										textarea.form-control(aria-label='Descrição', name='descricao') #{formdata.descricao}
+							.col-md-6.col-lg-6
+								.form-group
+									label(for='periodo') Periodo da reserva
+									#datepicker.input-daterange.input-group.col-md-12.col-lg-12
+										input.input-sm.form-control(type='text', name='start', autocomplete='off', required='true', value=formdata.periodo[0])
+										span.input-group-addon &nbsp;&nbsp;&nbsp;até&nbsp;&nbsp;&nbsp;
+										input.input-sm.form-control(type='text', name='end', autocomplete='off', required='true', value=formdata.periodo[1])
+										small#periodoHelp.form-text.text-muted Escolha um período para a sua reserva (para reservar apenas um dia repita a data nos dois campos).
+								.form-group
+									label.form-label Dias da semana
+									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
+										label.selectgroup-item
+											if formdata.dias.indexOf(1) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=1, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=1)
+											span.selectgroup-button Seg
+										label.selectgroup-item
+											if formdata.dias.indexOf(2) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=2, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=2)
+											span.selectgroup-button Ter
+										label.selectgroup-item
+											if formdata.dias.indexOf(3) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=3, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=3)
+											span.selectgroup-button Qua
+										label.selectgroup-item
+											if formdata.dias.indexOf(4) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=4, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=4)
+											span.selectgroup-button Qui
+										label.selectgroup-item
+											if formdata.dias.indexOf(5) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=5, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=5)
+											span.selectgroup-button Sex
+										label.selectgroup-item
+											if formdata.dias.indexOf(6) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=6, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=6)
+											span.selectgroup-button Sab
+										label.selectgroup-item
+											if formdata.dias.indexOf(7) > -1
+												input.selectgroup-input(type='checkbox', name='dia[]', value=7, checked='')
+											else
+												input.selectgroup-input(type='checkbox', name='dia[]', value=7)
+											span.selectgroup-button Dom
+										small#diaHelp.form-text.text-muted Deixe em branco para reservas de apenas um dia.
+								.form-group
+									label.form-label Salas de aula
+									.selectgroup.selectgroup-pills.col-md-12.col-lg-12
+										each val in salas
+											label.selectgroup-item
+												if formdata.salas.indexOf(val.numero) > -1
+													input.selectgroup-input(type='checkbox', name='sala[]', value=val.numero, checked='')
+												else
+													input.selectgroup-input(type='checkbox', name='sala[]', value=val.numero)
+												span.selectgroup-button Sala #{val.numero}
+									input.form-control(type='hidden', name='rid', value=rid)
 					.card-action
 						button.btn.btn-success(type='submit') Submit
