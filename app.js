@@ -4,13 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var formTestRouter = require('./routes/formtest')
-var usersRouter = require('./routes/users');
+//var moment = require('moment');
+//console.log(moment().format("HH:mm:ss"));
+//console.log(moment(fim, "HH:mm:ss").diff(moment(), 'minutes') < 0);
 
-//var pessoaRouter = require('./routes/pessoa');
-//var reservaRouter = require('./routes/reserva');
-//var historicoRouter = require('./routes/historico');
+var indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -19,16 +17,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 var db = require('mysql').createConnection({host: 'localhost', user: 'root', password: '05685040', database: 'linf'});
-//db.connect();
+
 app.set('db',db);
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
-
 
 app.use(function (req, res, next) {
   res.locals.route = req.originalUrl.split('/').filter(Boolean).map(function(crumb){
@@ -39,13 +35,12 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter);
-app.use('/formtest', formTestRouter);
-app.use('/users', usersRouter);
 
 // Routes for CRUDs
 app.use('/pessoa', require('./routes/pessoa'));
 app.use('/reserva', require('./routes/reserva'));
 app.use('/historico', require('./routes/historico'));
+app.use('/programacao', require('./routes/programacao'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

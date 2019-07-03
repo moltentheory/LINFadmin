@@ -1,0 +1,81 @@
+extends layout
+block content
+	.row
+		.col-md-6
+			.card.full-height
+				.card-header
+					.card-head-row
+						.card-title Programação da Sala
+						.card-tools
+							ul#pills-tab.nav.nav-pills.nav-secondary.nav-sm(role='tablist')
+								each val, valindex in salas
+									if valindex == 0
+										li.nav-item.submenu
+											a.nav-link.active.show(id='pills-'+val.numero+'-tab', data-toggle='pill', href='#pills-'+val.numero, role='tab', aria-controls='pills-'+val.numero, aria-selected='true') #{val.numero}
+									else
+										li.nav-item.submenu
+											a.nav-link(id='pills-'+val.numero+'-tab', data-toggle='pill', href='#pills-'+val.numero, role='tab', aria-controls='pills-'+val.numero, aria-selected='false') #{val.numero}
+				.card-body
+					.tab-content.mt-2.mb-3
+						each val, valindex in salas
+							div(class=('tab-pane fade'+((valindex==0)?(' active show'):(''))), id='pills-'+val.numero, role='tabpanel', aria-labelledby='pills-'+val.numero+'-tab')
+								ol.activity-feed
+									each horario in horarios
+										- var index = eventos.findIndex(function(evento){return (evento.horario_id == horario.id && evento.sala_numero == val.numero && evento.dia == diaatual) });
+										- if (index == -1)
+											li(class=('feed-item '+((horario.id < horarioatual)?('feed-item-secondary'):('feed-item-success'))))
+												time.date #{horario.inicio.slice(0, -3)} ~ #{horario.fim.slice(0, -3)}
+												span.text Sala livre
+										- else
+											- var evento = eventos[index];
+											if horario.id < horarioatual
+											li(class=('feed-item '+((horario.id < horarioatual)?('feed-item-secondary'):('feed-item-warning'))))
+												time.date #{horario.inicio.slice(0, -3)} ~ #{horario.fim.slice(0, -3)}
+												span.text #{evento.disciplina} :: #{evento.descricao}
+		.col-md-6
+			.card.full-height
+				.card-header
+					.card-head-row
+						.card-title Programação do Dia
+						.card-tools
+							ul#pills-tab.nav.nav-pills.nav-secondary.nav-sm(role='tablist')
+								li.nav-item.submenu
+									a#pills-today-tab.nav-link.active.show(data-toggle='pill', href='#pills-today', role='tab', aria-controls='pills-today', aria-selected='true') Hoje
+								li.nav-item.submenu
+									a#pills-tomorrow-tab.nav-link(data-toggle='pill', href='#pills-tomorrow', role='tab', aria-controls='pills-tomorrow', aria-selected='false') Amanhã
+				.card-body
+					.tab-content.mt-2.mb-3
+						#pills-today.tab-pane.fade.active.show(role='tabpanel', aria-labelledby='pills-today-tab')
+							each horario in horarios
+								.d-flex
+									.float-left.ml-2.pt-1
+										small.text-muted #{horario.inicio.slice(0, -3)}
+									.flex-1.ml-3.pt-1
+										h6.text-uppercase.fw-bold.mb-1
+											| Salas:
+											each sala in salas
+												- if( eventos.findIndex(function(evento){return (evento.horario_id == horario.id && evento.dia == diaatual && sala.numero == evento.sala_numero) }) > -1)
+													span.text-warning.pl-3 Sala #{sala.numero}
+												- else
+													span.text-success.pl-3 Sala #{sala.numero}
+										span.text-muted (termina às #{horario.fim.slice(0, -3)})
+								.separator-dashed
+						#pills-tomorrow.tab-pane.fade(role='tabpanel', aria-labelledby='pills-tomorrow-tab')
+							each horario in horarios
+								.d-flex
+									.float-left.ml-2.pt-1
+										small.text-muted #{horario.inicio.slice(0, -3)}
+									.flex-1.ml-3.pt-1
+										h6.text-uppercase.fw-bold.mb-1
+											| Salas:
+											each sala in salas
+												- if( eventos.findIndex(function(evento){return (evento.horario_id == horario.id && evento.dia != diaatual && sala.numero == evento.sala_numero) }) > -1)
+													span.text-warning.pl-3 Sala #{sala.numero}
+												- else
+													span.text-success.pl-3 Sala #{sala.numero}
+										span.text-muted (termina às #{horario.fim.slice(0, -3)})
+								.separator-dashed
+
+//- eventos: pessoa_cpf, nome, disciplina, estado, dia, horario_id, sala_numero, descricao
+//- horarios: id, inicio, fim
+//- salas: numero

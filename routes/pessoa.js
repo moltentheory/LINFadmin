@@ -127,10 +127,10 @@ router.post('/update', upload.single('foto'), function(req, res, next) {
   });
 });
 
-router.get('/remove', function(req, res, next) {
+router.get('/delete', function(req, res, next) {
   res.redirect('/pessoa/read/');
 });
-router.get('/remove/:cpf', function(req, res, next) {
+router.get('/delete/:cpf', function(req, res, next) {
   var db = req.app.get('db');
   var aux = 
     `DELETE FROM pessoa

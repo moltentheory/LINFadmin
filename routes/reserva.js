@@ -251,10 +251,10 @@ router.post('/update', function(req, res, next) {
   });
 });
 
-router.get('/remove', function(req, res, next) {
+router.get('/delete', function(req, res, next) {
   res.redirect('/reserva/read/');
 });
-router.get('/remove/:id', function(req, res, next) {
+router.get('/delete/:id', function(req, res, next) {
   var db = req.app.get('db');
   var aux = 
     `DELETE FROM evento
@@ -270,6 +270,5 @@ router.get('/remove/:id', function(req, res, next) {
     });
   });
 });
-
 
 module.exports = router;
