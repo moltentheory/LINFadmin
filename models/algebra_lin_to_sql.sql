@@ -16,6 +16,8 @@ FROM
     pessoa ON reserva.pessoa_cpf = pessoa.cpf
         INNER JOIN
     cargo ON pessoa.cargo_id = cargo.id
+WHERE
+    dia > CURRENT_DATE() + 14
 ;
 
 SELECT 
