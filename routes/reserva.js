@@ -191,8 +191,6 @@ router.get('/update/:id', function(req, res, next) {
                 dias:results[5].dados.split(',').map(function(value){return parseInt(value);}),
                 salas:results[6].dados.split(',').map(function(value){return parseInt(value);})
             };
-            console.log(formdata);
-            //res.send("gudu");
             res.render('reservau', { title: 'criando usuario', rid:req.params.id, horarios: horarios, salas: salas, pessoas: pessoas, disciplinas: disciplinas, formdata: formdata });
           });
         });

@@ -1,0 +1,26 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				form(action="/historico/create", method="post")
+					.card-header
+						.card-title Criação de nova entrada no Histórico
+						//reserva_id, id, dia, horario_id, sala_numero, descricao
+						//- fields: id, hora_entrada, hora_saida, pessoa_cpf, nome
+					.card-body
+						.row
+							.col-md-8.col-lg-8
+								.form-group
+									label(for='pessoa') Pessoa
+									select#pessoa.form-control(name='pessoa_cpf', required='true')
+										each val in pessoas
+											option(value=val.cpf) #{val.nome}
+								.form-group
+									label(for='entrada') Horario de entrada
+									input#entrada.form-control.form-control(name='entrada', required='true', type='text', value= currenttime)
+								.form-group
+									label(for='saida') Horario de saída
+									input#saida.form-control.form-control(name='saida', type='text', placeholder='Ex. 21:06:36')
+					.card-action
+						button.btn.btn-success(type='submit') Submit

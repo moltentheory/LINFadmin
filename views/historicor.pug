@@ -1,0 +1,28 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				.card-header
+					.card-title Entradas e saídas
+				.card-body
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') ID
+								th(scope='col') Nome
+								th(scope='col') Entrada
+								th(scope='col') Saída
+								th(scope='col')
+						tbody
+							each val in historico
+								tr
+									td
+										a(href='/historico/read/id/'+val.id)= val.id
+									td
+										a(href='/historico/read/cpf/'+val.pessoa_cpf)= val.nome
+									td= val.hora_entrada
+									td= val.hora_saida
+									td
+										a.btn.btn-xs.btn-primary(href='/historico/update/'+val.id) Update
+										a.btn.btn-xs.btn-danger(href='/historico/delete/'+val.id) Delete

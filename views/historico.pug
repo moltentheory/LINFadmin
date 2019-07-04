@@ -1,0 +1,27 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				.card-header
+					.card-title Todas as entradas e saídas
+				.card-body
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') ID
+								th(scope='col') Nome
+								th(scope='col') Entrada
+								th(scope='col') Saída
+						tbody
+							each val in historico
+								tr
+									td
+										a(href='/historico/read/id/'+val.id)= val.id
+									td
+										a(href='/historico/read/cpf/'+val.pessoa_cpf)= val.nome
+									td= val.hora_entrada
+									td= val.hora_saida
+//- fields: id, hora_entrada, hora_saida, pessoa_cpf, nome
+//-						col(style='width:25%')
+//-						col(style='width:75%')

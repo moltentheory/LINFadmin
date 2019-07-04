@@ -1,0 +1,30 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				form(action="/historico/update", method="post")
+					.card-header
+						.card-title Alteração de entrada no histórico (ID:#{historico.id})
+						//reserva_id, id, dia, horario_id, sala_numero, descricao
+						//- fields: id, hora_entrada, hora_saida, pessoa_cpf, nome
+					.card-body
+						.row
+							.col-md-8.col-lg-8
+								.form-group
+									label(for='pessoa') Pessoa
+									select#pessoa.form-control(name='pessoa_cpf', required='true')
+										each val in pessoas
+											if val.cpf == historico.pessoa_cpf
+												option(value=val.cpf, selected='') #{val.nome}*
+											else
+												option(value=val.cpf) #{val.nome}
+								.form-group
+									label(for='entrada') Horario de entrada
+									input#entrada.form-control.form-control(name='entrada', required='true', type='text', value=historico.hora_entrada)
+								.form-group
+									label(for='saida') Horario de saída
+									input#saida.form-control.form-control(name='saida', type='text', placeholder='Ex. 21:06:36', value=historico.hora_saida)
+									input.form-control(type='hidden', name='hid', value=historico.id)
+					.card-action
+						button.btn.btn-success(type='submit') Submit
