@@ -4,12 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-//var moment = require('moment');
-//console.log(moment().format("HH:mm:ss"));
-//console.log(moment(fim, "HH:mm:ss").diff(moment(), 'minutes') < 0);
-
-var indexRouter = require('./routes/index');
-
 var app = express();
 
 // view engine setup
@@ -34,7 +28,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/', indexRouter);
+app.use('/', require('./routes/index'));
 
 // Routes for CRUDs
 app.use('/pessoa', require('./routes/pessoa'));

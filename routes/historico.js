@@ -108,17 +108,17 @@ router.post('/create', function(req, res, next) {
 
 router.get('/update/:id', function(req, res, next) {
   var db = req.app.get('db');
-  var aux = 
-    `SELECT h.id, h.hora_entrada, h.hora_saida, h.pessoa_cpf, p.nome 
-    FROM historico h
-    INNER JOIN pessoa p
-    ON p.cpf = h.pessoa_cpf
-    WHERE h.id = ${req.params.id}
-    ORDER BY h.hora_entrada`;
   var pessoas = [];
   db.query('SELECT cpf, nome FROM pessoa', function (error, results, fields) {
     if (error) throw error;
     results.forEach(function(item) { pessoas.push({cpf: item.cpf, nome: item.nome}) });
+    var aux = 
+      `SELECT h.id, h.hora_entrada, h.hora_saida, h.pessoa_cpf, p.nome 
+      FROM historico h
+      INNER JOIN pessoa p
+      ON p.cpf = h.pessoa_cpf
+      WHERE h.id = ${req.params.id}
+      ORDER BY h.hora_entrada`;
     db.query(aux, function (error, results, fields) {
       if (error) throw error;
       results.forEach(function(result, index){this[index].hora_entrada = moment(this[index].hora_entrada).format('HH:mm:ss'); }, results);
