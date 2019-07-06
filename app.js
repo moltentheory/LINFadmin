@@ -34,7 +34,10 @@ app.use('/', require('./routes/index'));
 app.use('/pessoa', require('./routes/pessoa'));
 app.use('/reserva', require('./routes/reserva'));
 app.use('/historico', require('./routes/historico'));
-app.use('/programacao', require('./routes/programacao'))
+app.use('/programacao', require('./routes/programacao'));
+app.use('/buscas', require('./routes/buscas'));
+
+// Route for buscas
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

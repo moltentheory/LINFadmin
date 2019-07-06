@@ -1,0 +1,206 @@
+extends layout
+block content
+	.row
+		.col-md-12
+			.card
+				.card-header
+					.card-title Buscas
+				.card-body
+					.card-sub
+						p SELECT
+						p evento.sala_numero Sala,
+						p 	evento.dia 'Data',
+						p 	horario.inicio 'Hora de Início',
+						p 	horario.fim 'Hora do Término',
+						p 	pessoa.nome 'Reservado por',
+						p 	cargo.titulo Cargo,
+						p 	reserva.descricao Descrição
+						p FROM
+						p 	evento
+						p 		INNER JOIN
+						p 	horario ON evento.horario_id = horario.id
+						p 		INNER JOIN
+						p 	reserva ON evento.reserva_id = reserva.id
+						p 		INNER JOIN
+						p 	pessoa ON reserva.pessoa_cpf = pessoa.cpf
+						p 		INNER JOIN
+						p 	cargo ON pessoa.cargo_id = cargo.id
+						p WHERE
+						p 	dia > CURRENT_DATE() + 14
+						p ;
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') Sala
+								th(scope='col') Data
+								th(scope='col') Hora de Início
+								th(scope='col') Hora do Término
+								th(scope='col') Reservado por
+								th(scope='col') Cargo
+								th(scope='col') Descrição
+						tbody
+							each val in q1
+								tr
+									td= val.sala
+									td= val.data
+									td= val.inicio
+									td= val.fim
+									td= val.nome
+									td= val.cargo
+									td= val.descricao
+					.card-sub
+						p SELECT
+						p 	evento.sala_numero Sala,
+						p 	evento.dia 'Data',
+						p 	horario.inicio 'Hora de Início',
+						p 	horario.fim 'Hora de Término',
+						p 	reserva.descricao Descrição
+						p FROM
+						p 	evento
+						p 		INNER JOIN
+						p 	horario ON evento.horario_id = horario.id
+						p 		INNER JOIN
+						p 	reserva ON evento.reserva_id = reserva.id
+						p 		INNER JOIN
+						p 	disciplina ON reserva.disciplina_codigo = disciplina.codigo
+						p 		INNER JOIN
+						p 	departamento ON disciplina.departamento_id = departamento.id
+						p WHERE
+						p departamento.nome = 'DEPARTAMENTO DE CIÊNCIA DA COMPUTAÇÃO'
+						p ;
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') Sala
+								th(scope='col') Data
+								th(scope='col') Hora de Início
+								th(scope='col') Hora de Término
+								th(scope='col') Descrição
+						tbody
+							each val in q2
+								tr
+									td= val.sala
+									td= val.data
+									td= val.inicio
+									td= val.termino
+									td= val.descricao
+
+					.card-sub
+						p SELECT 
+						p 	pessoa.nome Nome,
+						p 	pessoa.email 'E-mail',
+						p 	departamento.nome Departamento,
+						p 	historico.hora_entrada 'Hora de Entrada'
+						p FROM
+						p 	pessoa
+						p 		INNER JOIN
+						p 	cargo ON pessoa.cargo_id = cargo.id
+						p 		INNER JOIN
+						p 	departamento ON pessoa.departamento_id = departamento.id
+						p 		INNER JOIN
+						p 	historico ON pessoa.cpf = historico.pessoa_cpf
+						p WHERE
+						p 	cargo.titulo = 'Professor'
+						p ;
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') Nome
+								th(scope='col') E-mail
+								th(scope='col') Departamento
+								th(scope='col') Hora de Entrada
+						tbody
+							each val in q3
+								tr
+									td= val.nome
+									td= val.email
+									td= val.departamento
+									td= val.entrada
+
+					.card-sub
+						p SELECT 
+						p 	historico.hora_entrada 'Horário de Entrada',
+						p 	historico.hora_saida 'Horário de Saída',
+						p 	cargo.titulo Cargo,
+						p 	pessoa.matricula Matrícula,
+						p 	pessoa.nome Nome,
+						p 	pessoa.email 'E-mail',
+						p 	departamento.nome Departamento
+						p FROM
+						p 	pessoa
+						p 		INNER JOIN
+						p 	cargo ON pessoa.cargo_id = cargo.id
+						p 		INNER JOIN
+						p 	departamento ON pessoa.departamento_id = departamento.id
+						p 		INNER JOIN
+						p 	historico ON pessoa.cpf = historico.pessoa_cpf
+						p WHERE
+						p 	historico.hora_entrada > CURRENT_DATE() - 31
+						p ;
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') Horário de Entrada
+								th(scope='col') Horário de Saída
+								th(scope='col') Cargo
+								th(scope='col') Matrícula
+								th(scope='col') Nome
+								th(scope='col') E-mail
+								th(scope='col') Departamento
+						tbody
+							each val in q4
+								tr
+									td= val.entrada
+									td= val.saida
+									td= val.cargo
+									td= val.matricula
+									td= val.nome
+									td= val.email
+									td= val.departamento
+						|
+						|
+					.card-sub
+						p SELECT 
+						p 	evento.sala_numero Sala,
+						p 	evento.dia 'Data',
+						p 	horario.inicio 'Hora de Início',
+						p 	horario.fim 'Hora do Término',
+						p 	reserva.descricao Descrição,
+						p 	disciplina.nome Disciplina,
+						p 	departamento.nome Departamento,
+						p 	pessoa.nome 'Reservado por'
+						p FROM
+						p 	reserva
+						p 		INNER JOIN
+						p 	evento ON reserva.id = evento.reserva_id
+						p 		INNER JOIN
+						p 	horario ON evento.horario_id = horario.id
+						p 		INNER JOIN
+						p 	disciplina ON reserva.disciplina_codigo = disciplina.codigo
+						p 		INNER JOIN
+						p 	departamento ON disciplina.departamento_id = departamento.id
+						p 		INNER JOIN
+						p 	pessoa ON reserva.pessoa_cpf = pessoa.cpf
+						p ;
+					table.table.table-hover
+						thead
+							tr
+								th(scope='col') Sala
+								th(scope='col') Data
+								th(scope='col') Hora de Início
+								th(scope='col') Hora do Término
+								th(scope='col') Descrição
+								th(scope='col') Disciplina
+								th(scope='col') Departamento
+								th(scope='col') Reservado por
+						tbody
+							each val in q5
+								tr
+									td= val.sala
+									td= val.data
+									td= val.inicio
+									td= val.fim
+									td= val.descricao
+									td= val.disciplina
+									td= val.departamento
+									td= val.nome
